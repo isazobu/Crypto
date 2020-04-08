@@ -1,0 +1,107 @@
+
+public class Cryptography {
+
+	private StringBuilder plainText;
+	private StringBuilder cipherText;
+	
+	Cryptography(){
+		this.plainText = new StringBuilder("");
+		this.cipherText = new StringBuilder("");
+	}
+	public String encrypt(Character cubes[][][],String plainText)
+	{
+		int sayac=0;
+		int sayac2=0;
+		for(int i=0;i<plainText.length()%3;i++)
+			plainText += "j";
+		
+		for(int i=0;i<plainText.length();i++)
+		{
+			sayac=0;
+			if(i%3==0 && i!=0)
+			{
+				if(sayac2%2==1)
+				{
+					MatrixOperations.alttakiyuzdegis(cubes,3,4,5);
+				}
+				else
+					MatrixOperations.alttakiyuzdegis(cubes,0,1,2);
+			}		
+			
+			
+			int[] sayilar = turnIndex(cubes,plainText.charAt(i++), sayac);
+			this.cipherText.append(cubes[sayac+3][sayilar[0]][sayilar[1]]);
+			sayac++;
+			sayilar = turnIndex(cubes,plainText.charAt(i++), sayac);
+			this.cipherText.append(cubes[sayac+3][sayilar[0]][sayilar[1]]);
+			sayac++;
+			sayilar = turnIndex(cubes,plainText.charAt(i), sayac);
+			this.cipherText.append(cubes[sayac+3][sayilar[0]][sayilar[1]]);
+			
+		}
+	
+	
+		return cipherText.toString();
+	}
+	
+	public String decrypt(Character cubes[][][],String cipherText)
+	{
+		int sayac=3;
+		int sayac2=0;
+
+		for(int i=0;i<cipherText.length();i++)
+		{
+			sayac=3;
+			if(i%3==0 && i!=0)
+			{
+				if(sayac2%2==1)
+				{
+					MatrixOperations.alttakiyuzdegis(cubes,3,4,5);
+				}
+				else
+					MatrixOperations.alttakiyuzdegis(cubes,0,1,2);
+			}		
+			int[] sayilar = this.turnIndex(cubes,cipherText.charAt(i++), sayac);
+			this.plainText.append(cubes[sayac-3][sayilar[0]][sayilar[1]]);
+			sayac++;
+			sayilar = this.turnIndex(cubes,cipherText.charAt(i++), sayac);
+			this.plainText.append(cubes[sayac-3][sayilar[0]][sayilar[1]]);
+			sayac++;
+			sayilar = this.turnIndex(cubes,cipherText.charAt(i), sayac);
+			this.plainText.append(cubes[sayac-3][sayilar[0]][sayilar[1]]);
+			
+		}
+		
+	
+		return this.plainText.toString();
+	}
+			
+	public int[] turnIndex(Character cubes[][][] , Character a , int yuz)
+	{
+		for(int j=0;j<6;j++)
+		{
+			for(int k=0;k<6;k++)
+			{
+				if(cubes[yuz][j][k] == a)
+				{
+					return new int[] {j,k};
+				}
+			}
+		}
+		return null;
+	}
+	
+	public StringBuilder getPlainText() {
+		return plainText;
+	}
+	public void setPlainText(StringBuilder plainText) {
+		this.plainText = plainText;
+	}
+	public StringBuilder getCipherText() {
+		return cipherText;
+	}
+	public void setCipherText(StringBuilder cipherText) {
+		this.cipherText = cipherText;
+	}
+	
+}
