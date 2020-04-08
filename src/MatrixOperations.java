@@ -10,30 +10,30 @@ public class MatrixOperations {
 	
 	public static void ayarla(Character[][][] cubes,int yuz,int yuz2)
 	{
-		ArrayList<Integer> tümdegerler = new ArrayList<Integer>();
-		tümdegerler.add(numberone(cubes,yuz,0,0)); // 1.bölgededeki toplam sayının modu var.
-		tümdegerler.add(numberone(cubes,yuz,0,3)); // 2.bölgededeki toplam sayının modu var.
-		tümdegerler.add(numberone(cubes,yuz,3,0)); // 3.bölgededeki toplam sayının modu var.
-		tümdegerler.add(numberone(cubes,yuz,3,3)); // 4.bölgededeki toplam sayının modu var.
+		ArrayList<Integer> tumdegerler = new ArrayList<Integer>();
+		tumdegerler.add(numberone(cubes,yuz,0,0)); // 1.bÃ¶lgedeki toplam sayÄ±nÄ±n modu var.
+		tumdegerler.add(numberone(cubes,yuz,0,3)); // 2.bolgedeki toplam sayÄ±nÄ±n modu var
+		tumdegerler.add(numberone(cubes,yuz,3,0)); // 3.
+		tumdegerler.add(numberone(cubes,yuz,3,3)); // 4.
 		for(int i=0;i<4;i++)
 		{
-			rotate4x(cubes,yuz2,i+1,tümdegerler.get(i));
+			rotate4x(cubes,yuz2,i+1,tumdegerler.get(i));
 		}
 	}
 	
-	public static void üsttekiyüzdegis(Character[][][] cubes,int yuz,int yuz2,int yuz3)
+	public static void usttekiyuzdegis(Character[][][] cubes,int yuz,int yuz2,int yuz3)
 	{
 		ayarla(cubes,yuz,yuz2);
 		ayarla(cubes,yuz2,yuz3);
 		ayarla(cubes,yuz3,yuz);
 		
-		int a[] = diziyiTopla(cubes,yuz); // iso dis döngü
-		rotate20x(cubes,yuz2,5,a[0]); // mod 20
+		int a[] = diziyiTopla(cubes,yuz);
+		rotate20x(cubes,yuz2,5,a[0]);
 		
 		
 	}
 	
-	public static void alttakiyüzdegis(Character[][][] cubes,int yuz , int yuz2,int yuz3)
+	public static void alttakiyuzdegis(Character[][][] cubes,int yuz , int yuz2,int yuz3)
 	{
 		Character[][] yeni = new Character[6][];
 		for (int i = 0; i < 6; i++) {
@@ -80,7 +80,6 @@ public class MatrixOperations {
 				}
 				System.out.println();
 			}
-			System.out.println("yüz bitişi");
 		}
 	}
 	
